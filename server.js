@@ -16,6 +16,7 @@ app.use(express.json());
 
 //give access to all origins
 const cors = require('cors');
+const User = require('./models/UserSchema');
 app.use(cors());
 
 // use routes
@@ -24,6 +25,12 @@ app.use('/api/users', require('./controller/userController'));
 app.use('/api/payments', require('./controller/paymentController'));
 app.use('/api/cloudinary', require('./controller/CloudinaryController'));
 app.use('/api/auth', require('./controller/AuthController'));
+
+const internalEnrollmentRoutes = require ("./routes/internalEnrollment.js");
+
+app.use("/api", internalEnrollmentRoutes);
+
+
 
 //Port number
 const port = 3000;

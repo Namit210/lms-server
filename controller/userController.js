@@ -83,7 +83,7 @@ router.post("/enroll",auth,authorize(["admin","user"]), async (req, res) => {
     // Check if the user is already enrolled in the course
     const isAlreadyEnrolled = user.enrollments.some(enrollment => enrollment.courseId.toString() === courseId);
     if (isAlreadyEnrolled) {
-      return res.status(400).json({ message: "User is already enrolled in this course" });
+      return res.status(200).json({ message: "User is already enrolled in this course", user, ok: true });
     }
 
     // Add the enrollment to the user's enrollments array
